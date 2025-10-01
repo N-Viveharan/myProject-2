@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import userModel from '../models/userModel.js'
+import userModel from '../model/userModel.js'
+import transporter from '../config/nodemailer.js'
 
 
 
@@ -29,6 +30,16 @@ import userModel from '../models/userModel.js'
                 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
+
+        //sending welcome email
+          const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: email,
+            subject: 'welcome to viveharan',
+            text: `Welcome to viveharan website. Your account has
+                     been created with email id:${email}`
+        }
+        await transporter.sendMail(mailOptions)
 
          return res.json({ success: true })
 
@@ -99,6 +110,6 @@ import userModel from '../models/userModel.js'
     } catch (error) {
 
          return res.json({ success: false, message: error.message })
-         
+
     }
  }
