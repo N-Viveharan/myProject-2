@@ -26,8 +26,8 @@ import { EMAIL_VERIFY_TEMPLATE,PASSWORD_RESET_TEMPLATE } from '../config/emailTe
 
           res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ?
+            secure: process.env.NODE_ENV === 'development',
+            sameSite: process.env.NODE_ENV === 'development' ?
                 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
@@ -48,6 +48,7 @@ import { EMAIL_VERIFY_TEMPLATE,PASSWORD_RESET_TEMPLATE } from '../config/emailTe
 
     } catch (error) {
           res.json({ success: false, message: error.message })
+          alert("hai")
     }
  }
 
@@ -78,8 +79,8 @@ import { EMAIL_VERIFY_TEMPLATE,PASSWORD_RESET_TEMPLATE } from '../config/emailTe
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ?
+            secure: process.env.NODE_ENV === 'development',
+            sameSite: process.env.NODE_ENV === 'development' ?
                 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
@@ -89,6 +90,7 @@ import { EMAIL_VERIFY_TEMPLATE,PASSWORD_RESET_TEMPLATE } from '../config/emailTe
 
     } catch (error) {
         return res.json({ success: false, message: error.message })
+       
     }
  }
 
